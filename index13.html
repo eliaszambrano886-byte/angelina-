@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Flor Amarilla</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Texto especial en la esquina inferior derecha */
+    #dedicatoria {
+      position: fixed;
+      bottom: 20px;
+      right: 30px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #ffeb3b;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+    /* Debug oculto (si no lo quieres visible) */
+    #debug { display: none; }
+  </style>
+</head>
+<body>
+  <!-- 🎵 Música -->
+  <audio id="musica1" loop preload="auto">
+    <source src="leon-larregui-brillas-letra.mp3" type="audio/mpeg">
+    <source src="León Larregui - Brillas - Letra.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio.
+  </audio>
+
+  <!-- 🌻 Flor animada -->
+  <div class="sunflower">
+    <div class="flower_wrapper">
+      <div class="flower_stem"></div>
+      <div class="flower_center"></div>
+
+      <!-- Pétalos -->
+      <div class="flower_petal flower_petal-1"></div>
+      <div class="flower_petal flower_petal-2"></div>
+      <div class="flower_petal flower_petal-3"></div>
+      <div class="flower_petal flower_petal-4"></div>
+      <div class="flower_petal flower_petal-5"></div>
+      <div class="flower_petal flower_petal-6"></div>
+      <div class="flower_petal flower_petal-7"></div>
+      <div class="flower_petal flower_petal-8"></div>
+      <div class="flower_petal flower_petal-9"></div>
+      <div class="flower_petal flower_petal-10"></div>
+      <div class="flower_petal flower_petal-11"></div>
+      <div class="flower_petal flower_petal-12"></div>
+
+      <!-- Hojas -->
+      <div class="flower_leaf flower_leaf-1"></div>
+      <div class="flower_leaf flower_leaf-2"></div>
+
+      <!-- Luces de la flor -->
+      <div class="flower_light flower_light-1"></div>
+      <div class="flower_light flower_light-2"></div>
+      <div class="flower_light flower_light-3"></div>
+      <div class="flower_light flower_light-4"></div>
+      <div class="flower_light flower_light-5"></div>
+      <div class="flower_light flower_light-6"></div>
+      <div class="flower_light flower_light-7"></div>
+      <div class="flower_light flower_light-8"></div>
+    </div>
+  </div>
+
+  <!-- 🌟 Luces decorativas -->
+  <div class="light light-1"></div>
+  <div class="light light-2"></div>
+  <div class="light light-3"></div>
+  <div class="light light-4"></div>
+  <div class="light light-5"></div>
+  <div class="light light-6"></div>
+  <div class="light light-7"></div>
+  <div class="light light-8"></div>
+  <div class="light light-9"></div>
+  <div class="light light-10"></div>
+  <div class="light light-11"></div>
+  <div class="light light-12"></div>
+  
+  <!-- 💌 Mensaje -->
+  <p id="text">CON mucho amor [...]</p>
+
+  <!-- ✨ Dedicatoria -->
+  <div id="dedicatoria">para mi Angelina</div>
+
+  <!-- Debug oculto -->
+  <div id="debug">Inicializando...</div>
+
+  <script>
+    const audio = document.getElementById('musica1');
+    const debug = document.getElementById('debug');
+
+    function updateDebug(msg){
+      debug.textContent = msg;
+      console.log('[DEBUG]', msg, 'src:', audio.currentSrc);
+    }
+
+    window.addEventListener('load', async () => {
+      updateDebug('Intentando autoplay...');
+      audio.muted = true;
+      try {
+        await audio.play();
+        audio.muted = false;
+        audio.volume = 1.0;
+        await audio.play();
+        updateDebug('Reproducción OK ✅');
+      } catch(err){
+        updateDebug('Autoplay bloqueado, pero la música debería sonar tras interacción.');
+      }
+    });
+
+    audio.addEventListener('error', () => {
+      updateDebug('Error cargando el audio. Verifica el nombre del archivo MP3.');
+    });
+  </script>
+</body>
+</html>
+
